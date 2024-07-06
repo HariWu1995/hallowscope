@@ -1,0 +1,130 @@
+Mã số,Tên,Tên (EN),Tên (Zh),Ngũ hành,Hệ sao,Mã Loại sao,Loại sao,Phương vị,Âm Dương,Vòng Trường Sinh
+1,Tử vi,,,Thổ,Tử vi tinh hệ,1,Chính tinh,Đế tinh,TRUE,FALSE
+2,Liêm trinh,,,Hỏa,Tử vi tinh hệ,1,Chính tinh,Bắc đẩu tinh,TRUE,FALSE
+3,Thiên đồng,,,Thủy,Tử vi tinh hệ,1,Chính tinh,Bắc đẩu tinh,TRUE,FALSE
+4,Vũ khúc,,,Kim,Tử vi tinh hệ,1,Chính tinh,Bắc đẩu tinh,FALSE,FALSE
+5,Thái dương,,,Hỏa,Tử vi tinh hệ,1,Chính tinh,Nam đẩu tinh,TRUE,FALSE
+6,Thiên cơ,,,Mộc,Tử vi tinh hệ,1,Chính tinh,Nam đẩu tinh,FALSE,FALSE
+7,Thiên phủ,,,Thổ,Thiên phủ tinh hệ,1,Chính tinh,Nam đẩu tinh,TRUE,FALSE
+8,Thái âm,,,Thủy,Thiên phủ tinh hệ,1,Chính tinh,Bắc đẩu tinh,FALSE,FALSE
+9,Tham lang,,,Thủy,Thiên phủ tinh hệ,1,Chính tinh,Bắc đẩu tinh,FALSE,FALSE
+10,Cự môn,,,Thủy,Thiên phủ tinh hệ,1,Chính tinh,Bắc đẩu tinh,FALSE,FALSE
+11,Thiên tướng,,,Thủy,Thiên phủ tinh hệ,1,Chính tinh,Nam đẩu tinh,TRUE,FALSE
+12,Thiên lương,,,Mộc,Thiên phủ tinh hệ,1,Chính tinh,Nam đẩu tinh,FALSE,FALSE
+13,Thất sát,,,Kim,Thiên phủ tinh hệ,1,Chính tinh,Nam đẩu tinh,TRUE,FALSE
+14,Phá quân,,,Thủy,Thiên phủ tinh hệ,1,Chính tinh,Bắc đẩu tinh,FALSE,FALSE
+15,Thái tuế,,,Hỏa,Vòng Địa chi - Thái tuế,15,Hình tinh,,,FALSE
+16,Thiếu dương,,,Hỏa,Vòng Địa chi - Thái tuế,5,Phúc tinh,,,FALSE
+17,Tang môn,,,Mộc,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+18,Thiếu âm,,,Thủy,Vòng Địa chi - Thái tuế,5,Phúc tinh,,,FALSE
+19,Quan phù,,,Hỏa,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+20,Tử phù,,,Kim,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+21,Tuế phá,,,Hỏa,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+22,Long đức,,,Thủy,Vòng Địa chi - Thái tuế,5,Phúc tinh,,,FALSE
+23,Bạch hổ,,,Kim,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+24,Phúc đức,,,Thổ,Vòng Địa chi - Thái tuế,5,Phúc tinh,,,FALSE
+25,Điếu khách,,,Hỏa,Vòng Địa chi - Thái tuế,12,Bại tinh,,,FALSE
+26,Trực phù,,,Kim,Vòng Địa chi - Thái tuế,16,Hình tinh,,,FALSE
+27,Lộc tồn,,,Thổ,Vòng Thiên can - Lộc tồn,3,Quý tinh,Bắc đẩu tinh,,FALSE
+28,Lực sĩ,,,Hỏa,Vòng Thiên can - Lộc tồn,2,Phụ tinh,,,FALSE
+29,Thanh long,,,Thủy,Vòng Thiên can - Lộc tồn,5,Phúc tinh,,,FALSE
+30,Tiểu hao,,,Hỏa,Vòng Thiên can - Lộc tồn,12,Bại tinh,,,FALSE
+31,Tướng quân,,,Mộc,Vòng Thiên can - Lộc tồn,4,Quyền tinh,,,FALSE
+32,Tấu thư,,,Kim,Vòng Thiên can - Lộc tồn,3,Quý tinh,,,FALSE
+33,Phi liêm,,,Hỏa,Vòng Thiên can - Lộc tồn,2,Phụ tinh,,,FALSE
+34,Hỷ thần,,,Hỏa,Vòng Thiên can - Lộc tồn,5,Phúc tinh,,,FALSE
+35,Bệnh phù,,,Thổ,Vòng Thiên can - Lộc tồn,12,Bại tinh,,,FALSE
+36,Đại hao,,,Hỏa,Vòng Thiên can - Lộc tồn,12,Bại tinh,,,FALSE
+37,Phục binh,,,Hỏa,Vòng Thiên can - Lộc tồn,13,Ám tinh,,,FALSE
+38,Quan phù,,,Hỏa,Vòng Thiên can - Lộc tồn,12,Bại tinh,,,FALSE
+109,Bác sỹ,,,Thủy,Vòng Thiên can - Lộc tồn,5,Phúc tinh,,,FALSE
+39,Trường sinh,,,Thủy,Vòng Trường sinh,5,Phúc tinh,,,FALSE
+40,Mộc dục,,,Thủy,Vòng Trường sinh,14,Dâm tinh,,,FALSE
+41,Quan đới,,,Kim,Vòng Trường sinh,4,Quyền tinh,,,FALSE
+42,Lâm quan,,,Kim,Vòng Trường sinh,7,Đài các tinh,,,FALSE
+43,Đế vượng,,,Kim,Vòng Trường sinh,5,Phúc tinh,,,FALSE
+44,Suy,,,Thủy,Vòng Trường sinh,12,Bại tinh,,,FALSE
+45,Bệnh,,,Hỏa,Vòng Trường sinh,12,Bại tinh,,,FALSE
+46,Tử,,,Hỏa,Vòng Trường sinh,12,Bại tinh,,,FALSE
+47,Mộ,,,Thổ,Vòng Trường sinh,2,Phụ tinh,,,FALSE
+48,Tuyệt,,,Thổ,Vòng Trường sinh,12,Bại tinh,,,FALSE
+49,Thai,,,Thổ,Vòng Trường sinh,14,Dâm tinh,,,FALSE
+50,Dưỡng,,,Mộc,Vòng Trường sinh,2,Phụ tinh,,,FALSE
+51,Đà la,,,Kim,Lục sát - Kình dương đà la,11,Sát tinh,,,FALSE
+52,Kình dương,,,Kim,Lục sát - Kình dương đà la,11,Sát tinh,,,FALSE
+53,Địa không,,,Hỏa,Địa không - Địa kiếp,11,Sát tinh,,,FALSE
+54,Địa kiếp,,,Hỏa,Địa không - Địa kiếp,11,Sát tinh,,,FALSE
+55,Linh tinh,,,Hỏa,Hỏa tinh - Linh tinh,11,Sát tinh,,,FALSE
+56,Hỏa tinh,,,Hỏa,Hỏa tinh - Linh tinh,11,Sát tinh,,,FALSE
+57,Văn xương,,,Kim,Sao Âm Dương: Văn xương - Văn khúc,6,Văn tinh,,,FALSE
+58,Văn khúc,,,Thủy,Sao Âm Dương: Văn xương - Văn khúc,6,Văn tinh,,,FALSE
+59,Thiên khôi,,,Hỏa,Thiên khôi - Thiên Việt,6,Văn tinh,,,FALSE
+60,Thiên việt,,,Hỏa,Thiên khôi - Thiên Việt,6,Văn tinh,,,FALSE
+61,Tả phù,,,Thổ,Tả phù - Hữu bật,2,Phụ tinh,,,FALSE
+62,Hữu bật,,,Thổ,Tả phù - Hữu bật,2,Phụ tinh,,,FALSE
+63,Long trì,,,Thủy,Long trì - Phượng các,3,Quý tinh,,,FALSE
+64,Phượng các,,,Thổ,Long trì - Phượng các,3,Quý tinh,,,FALSE
+65,Tam thai,,,Mộc,Tam thai - Bát tọa,7,Đài các tinh,,,FALSE
+66,Bát tọa,,,Thủy,Tam thai - Bát tọa,7,Đài các tinh,,,FALSE
+67,Ân quang,,,Mộc,Ân quang - Thiên quý,3,Quý tinh,,,FALSE
+68,Thiên quý,,,Thổ,Ân quang - Thiên quý,3,Quý tinh,,,FALSE
+69,Thiên khốc,,,Thủy,Sao đôi khác,12,Bại tinh,,,FALSE
+70,Thiên hư,,,Thủy,Sao đôi khác,12,Bại tinh,,,FALSE
+71,Thiên đức,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+72,Nguyệt đức,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+73,Thiên hình,,,Hỏa,Sao đôi khác,15,Hình tinh,,,FALSE
+74,Thiên riêu,,,Thủy,Sao đôi khác,13,Ám tinh,,,FALSE
+75,Thiên y,,,Thủy,Sao đôi khác,5,Phúc tinh,,,FALSE
+76,Quốc ấn,,,Thổ,Sao đôi khác,6,Văn tinh,,,FALSE
+77,Đường phù,,,Mộc,Sao đôi khác,4,Quyền tinh,,,FALSE
+78,Đào hoa,,,Mộc,Sao đôi khác,8,Đào hoa tinh,,,FALSE
+79,Hồng loan,,,Thủy,Sao đôi khác,8,Đào hoa tinh,,,FALSE
+80,Thiên hỷ,,,Thủy,Sao đôi khác,5,Phúc tinh,,,FALSE
+81,Thiên giải,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+82,Địa giải,,,Thổ,Sao đôi khác,5,Phúc tinh,,,FALSE
+83,Giải thần,,,Mộc,Sao đôi khác,5,Phúc tinh,,,FALSE
+84,Thai phụ,,,Kim,Sao đôi khác,6,Văn tinh,,,FALSE
+85,Phong cáo,,,Thổ,Sao đôi khác,4,Quyền tinh,,,FALSE
+86,Thiên tài,,,Thổ,Sao đôi khác,2,Phụ tinh,,,FALSE
+87,Thiên thọ,,,Thổ,Sao đôi khác,5,Phúc tinh,,,FALSE
+88,Thiên thương,,,Thổ,Sao đôi khác,12,Bại tinh,,,FALSE
+89,Thiên sứ,,,Thủy,Sao đôi khác,12,Bại tinh,,,FALSE
+90,Thiên la,,,Thổ,Sao đôi khác,12,Bại tinh,,,FALSE
+91,Địa võng,,,Thổ,Sao đôi khác,12,Bại tinh,,,FALSE
+92,Hóa khoa,,,Thủy,Sao đôi khác,5,Phúc tinh,,,FALSE
+93,Hóa quyền,,,Thủy,Sao đôi khác,4,Quyền tinh,,,FALSE
+94,Hóa lộc,,,Mộc,Sao đôi khác,3,Quý tinh,,,FALSE
+95,Hóa kỵ,,,Thủy,Sao đôi khác,13,Ám tinh,,,FALSE
+96,Cô thần,,,Thổ,Sao đôi khác,13,Ám tinh,,,FALSE
+97,Quả tú,,,Thổ,Sao đôi khác,13,Ám tinh,,,FALSE
+98,Thiên mã,,,Hỏa,Sao đôi khác,3,Quý tinh,,,FALSE
+99,Phá toái,,,Hỏa,Sao đôi khác,12,Bại tinh,,,FALSE
+100,Thiên quan,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+101,Thiên phúc,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+102,Lưu hà,,,Thủy,Sao đôi khác,12,Bại tinh,,,FALSE
+103,Thiên trù,,,Thổ,Sao đôi khác,5,Phúc tinh,,,FALSE
+104,Kiếp sát,,,Hỏa,Sao đôi khác,11,Sát tinh,,,FALSE
+105,Hoa cái,,,Kim,Sao đôi khác,14,Dâm tinh,,,FALSE
+106,Văn tinh,,,Hỏa,Sao đôi khác,6,Văn tinh,,,FALSE
+107,Đẩu quân,,,Hỏa,Sao đôi khác,5,Phúc tinh,,,FALSE
+108,Thiên không,,,Thủy,Sao đôi khác,11,Sát tinh,,,FALSE
+110,Tuần không,,,,,,,,,
+111,Triệt không,,,,,,,,,
+112,,,,,,,,,,
+113,,,,,,,,,,
+114,,,,,,,,,,
+115,,,,,,,,,,
+116,,,,,,,,,,
+117,,,,,,,,,,
+118,,,,,,,,,,
+119,,,,,,,,,,
+120,,,,,,,,,,
+121,Lưu thái tuế,,,,,,,,,
+122,Lưu tang môn,,,,,,,,,
+123,Lưu bạch hổ,,,,,,,,,
+124,Lưu thiên hư,,,,,,,,,
+125,Lưu thiên khốc,,,,,,,,,
+126,Lưu lộc tồn,,,,,,,,,
+127,Lưu kình dương,,,,,,,,,
+128,Lưu thiên mã,,,,,,,,,
+129,Lưu đà la,,,,,,,,,
