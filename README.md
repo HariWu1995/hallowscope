@@ -13,3 +13,5 @@ In this repository, we will replace ~~dataset~~ with the term **WeAcKn** with th
 * [Thư Viện Lá Số Tử Vi Người Nổi Tiếng](https://lasotuvi.kabala.vn/thuvien/) (8000+ người)
 * [Lá số Tử vi - Diệu tinh tú](https://play.google.com/store/apps/details?id=com.tomlestudio.lasotuvi) (Mobile App ⇨ DeCompile)
 * [Mệnh Vô Chính Diệu](https://tuvivietnam.vn/mau-nguoi-menh-vo-chinh-dieu-tuvivietnam/)
+* [Cách cục cơ bản trong Tử vi](http://tuvi.cohoc.net/51-cach-cuc-co-ban-trong-tu-vi-nid-3488.html)
+* [Bộ sao lưu và Cách xem Hạn](http://tuvi.cohoc.net/y-nghia-bo-sao-luu-va-cach-xem-han-trong-tu-vi-nid-6784.html)
