@@ -1,3 +1,7 @@
+# Debugging
+flagged/
+gradio_cached_examples/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
