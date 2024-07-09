@@ -24,11 +24,10 @@ tips = r"""
 
 if __name__ == "__main__":
 
-    hello_world = gr.Interface(lambda name: "Hello " + name, "text", "text")
-    bye_world = gr.Interface(lambda name: "Bye " + name, "text", "text")
+    from apps.horoscope.ui import gui as gui_hs
 
-    tabs = [hello_world, bye_world]
-    names = ["Hello World", "Bye World"]
+    tabs = [gui_hs]
+    names = ["Horoscope"]
 
     with gr.Blocks(css=css, analytics_enabled=False) as demo:
         

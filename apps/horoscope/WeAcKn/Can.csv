@@ -1,11 +1,11 @@
-Value,Âm Dương
-Giáp,TRUE
-Ất,FALSE
-Bính,TRUE
-Đinh,FALSE
-Mậu,TRUE
-Kỷ,FALSE
-Canh,TRUE
-Tân,FALSE
-Nhâm,TRUE
-Quý,FALSE
+Value,Âm Dương,Ngũ hành,Vị trí Địa Bàn
+Giáp,TRUE,Mộc,3
+Ất,FALSE,Mộc,4
+Bính,TRUE,Hỏa,6
+Đinh,FALSE,Hỏa,7
+Mậu,TRUE,Thổ,6
+Kỷ,FALSE,Thổ,7
+Canh,TRUE,Kim,9
+Tân,FALSE,Kim,10
+Nhâm,TRUE,Thủy,12
+Quý,FALSE,Thủy,1

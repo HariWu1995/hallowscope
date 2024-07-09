@@ -1,13 +1,13 @@
-Value,Âm Dương
-Tý,TRUE
-Sửu,FALSE
-Dần,TRUE
-Mão,FALSE
-Thìn,TRUE
-Tỵ,FALSE
-Ngọ,TRUE
-Mùi,FALSE
-Thân,TRUE
-Dậu,FALSE
-Tuất,TRUE
-Hợi,FALSE
+Value,Âm Dương,Ngũ hành,Mệnh chủ,Thân chủ
+Tý,TRUE,Thủy,Tham lang,Linh tinh
+Sửu,FALSE,Thổ,Cự môn,Thiên tướng
+Dần,TRUE,Mộc,Lộc tồn,Thiên lương
+Mão,FALSE,Mộc,Văn khúc,Thiên đồng
+Thìn,TRUE,Thổ,Liêm trinh,Văn xương
+Tỵ,FALSE,Hỏa,Vũ khúc,Thiên cơ
+Ngọ,TRUE,Hỏa,Phá quân,Hỏa tinh
+Mùi,FALSE,Thổ,Vũ khúc,Thiên tướng
+Thân,TRUE,Kim,Liêm trinh,Thiên lương
+Dậu,FALSE,Kim,Văn khúc,Thiên đồng
+Tuất,TRUE,Thổ,Lộc tồn,Văn xương
+Hợi,FALSE,Thủy,Cự môn,Thiên cơ
