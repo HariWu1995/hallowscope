@@ -11,9 +11,9 @@ Science is tied to "the plane of effects", but occultism is take to "the plane o
 
 # Steps:
 1. ✅ Xác định ngày, giờ, tháng, năm sinh chính xác
-2. ⬜ Xác định tuổi Âm hay Dương và Bản Mệnh 
-3. ⬜ Xác định vị trí các cung trên lá số
-4. ⬜ Xác định cục theo tuổi  
+2. ✅ Xác định tuổi Âm hay Dương và Bản Mệnh 
+3. ✅ Xác định vị trí các cung trên lá số
+4. ✅ Xác định cục theo tuổi  
 5. ⬜ An sao Tử Vi và 13 chính tinh khác
 6. ⬜ An các Phụ tinh
 7. ⬜ Tính Đại hạn, Tiểu hạn, Nguyệt hạn, Thời hạn  
@@ -23,6 +23,8 @@ Science is tied to "the plane of effects", but occultism is take to "the plane o
 * [Hướng dẫn tính toán Năm, Tháng, Ngày, Giờ theo Can Chi](https://mytour.vn/vi/blog/bai-viet/huong-dan-tinh-toan-nam-thang-ngay-gio-theo-can-chi-dung-nhat.html)
 * [7 bước lập Lá số Tử vi](https://lykhi.com/7-buoc-lap-la-so-tu-vi-day-du-va-chi-tiet-tu-a-z/)
 * [Hướng dẫn chi tiết các bước lập Lá số Tử vi](https://lichngaytot.com/tu-vi/cac-buoc-lap-la-so-tu-vi-304-217457.html)
+* [Mệnh theo Năm ](https://lichngaytot.com/tu-vi/xem-menh-theo-nam-sinh-304-187792.html)
+* [Mệnh và Cục: Sinh và Khắc](https://hocvienlyso.org/chuong-8-sinh-khac-giua-cuc-va-ban-menh.html)
 * [Tổng quan và Phân loại Tính chất các Sao trong Tử vi](https://thansohoconline.com/cac-sao-trong-tu-vi.html)
 * [Lập Lá Số Tử Vi: An Sao Và Xem Tử Vi](https://kabala.vn/la-so-tu-vi/)
 * [Thư Viện Lá Số Tử Vi Người Nổi Tiếng](https://lasotuvi.kabala.vn/thuvien/) (8000+ người)

@@ -1,0 +1,25 @@
+Năm sinh,Dương Nam - Âm Nữ,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu,Tuất,Hợi
+Dần,TRUE,Mão,Dần,Sửu,Tý,Hợi,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn
+Ngọ,TRUE,Mão,Dần,Sửu,Tý,Hợi,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn
+Tuất,TRUE,Mão,Dần,Sửu,Tý,Hợi,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn
+Dần,FALSE,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu,Tuất,Hợi,Tý,Sửu,Dần
+Ngọ,FALSE,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu,Tuất,Hợi,Tý,Sửu,Dần
+Tuất,FALSE,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu,Tuất,Hợi,Tý,Sửu,Dần
+Tý,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Sửu,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Mão,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Thìn,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Tỵ,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Mùi,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Thân,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Dậu,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Hợi,TRUE,Tuất,Dậu,Thân,Mùi,Ngọ,Tỵ,Thìn,Mão,Dần,Sửu,Tý,Hợi
+Tý,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Sửu,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Mão,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Thìn,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Tỵ,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Mùi,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Thân,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Dậu,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu
+Hợi,FALSE,Tuất,Hợi,Tý,Sửu,Dần,Mão,Thìn,Tỵ,Ngọ,Mùi,Thân,Dậu

@@ -1,5 +1,10 @@
 """
-Reference: https://github.com/doanguyen/lasotuvi/blob/master/lasotuvi/Lich_HND.py
+(c) 2006 Ho Ngoc Duc.
+Astronomical algorithms
+    from the book "Astronomical Algorithms" by Jean Meeus, 1998
+
+Reference: 
+    https://github.com/doanguyen/lasotuvi/blob/master/lasotuvi/Lich_HND.py
 """
 import pytz
 import datetime
@@ -19,7 +24,7 @@ def convert_date_from_universal_to_julian(
 
     quarter = int(year / 4)
     jd = day + int((month * 153 + 2) / 5) + 365 * year + quarter \
-             + int(year / 100) - int(year / 400) - 32045
+             + int(year / 100) - int(quarter / 100) - 32045
 
     # Check whether Julian or Gregorian calendar
     if jd < 2299161:
@@ -250,7 +255,7 @@ def convert_date_from_lunisolar_to_universal(lunar_day: int,
 if __name__ == "__main__":
 
     u_day = dict(
-        year = 100, month = 7, day = 8,  
+        year = 1700, month = 5, day = 19,  
         # hour = 10, minute = 3, second = 16, 
         # tz = "Asia/Ho_Chi_Minh"
     )

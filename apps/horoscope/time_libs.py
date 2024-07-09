@@ -38,8 +38,9 @@ def convert_date_from_lunisolar_to_universal(
 
 if __name__ == "__main__":
 
+    # Error for year < 1700
     u_day = dict(
-        year = 1000, month = 7, day = 8,  
+        year = 1700, month = 5, day = 19,  
         hour = 10, minute = 3, second = 16, tz = "Asia/Ho_Chi_Minh"
     )
 

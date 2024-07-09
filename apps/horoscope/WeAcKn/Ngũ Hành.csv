@@ -1,13 +1,6 @@
-Cung Mệnh,Giáp,Kỷ,Ất,Canh,Bính,Tân,Đinh,Nhâm,Mậu,Quý
-Tý,Thủy,,Hỏa,,Thổ,,Mộc,,Kim,
-Sửu,,,,,,,,,,
-Dần,Hỏa,,Thổ,,Mộc,,Kim,,Thủy,
-Mão,,,,,,,,,,
-Thìn,Mộc,,Kim,,Thủy,,Hỏa,,Thổ,
-Tỵ,,,,,,,,,,
-Ngọ,Thổ,,Mộc,,Kim,,Thủy,,Hỏa,
-Mùi,,,,,,,,,,
-Thân,Kim,,Thủy,,Hỏa,,Thổ,,Mộc,
-Dậu,,,,,,,,,,
-Tuất,Hỏa,,Thổ,,Mộc,,Kim,,Thủy,
-Hợi,,,,,,,,,,
+Tương quan,Kim,Thủy,Mộc,Hỏa,Thổ
+Kim,Tương hòa,Tương sinh,Tương khắc,,
+Thủy,,Tương hòa,Tương sinh,Tương khắc,
+Mộc,,,Tương hòa,Tương sinh,Tương khắc
+Hỏa,Tương khắc,,,Tương hòa,Tương sinh
+Thổ,Tương sinh,Tương khắc,,,Tương hòa

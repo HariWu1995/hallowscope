@@ -1,61 +1,61 @@
-Can,Chi,Năm,ID,Mệnh,Ngũ hành
-Canh,Thân,1980,0,Thạch Lựu Mộc,Mộc
-Tân,Dậu,1981,1,Thạch Lựu Mộc,Mộc
-Nhâm,Tuất,1982,2,Đại Hải Thủy,Thủy
-Quý,Hợi,1983,3,Đại Hải Thủy,Thủy
-Giáp,Tý,1984,4,Hải Trung Kim,Kim
-Ất,Sửu,1985,5,Hải Trung Kim,Kim
-Bính,Dần,1986,6,Lư Trung Hỏa,Hỏa
-Đinh,Mão,1987,7,Lư Trung Hỏa,Hỏa
-Mậu,Thìn,1988,8,Đại Lâm Mộc,Mộc
-Kỳ,Tỵ,1989,9,Đại Lâm Mộc,Mộc
-Canh,Ngọ,1990,10,Lộ Bàn Thổ,Thổ
-Tân,Mùi,1991,11,Lộ Bàn Thổ,Thổ
-Nhâm,Thân,1992,12,Kiếm Phong Kim,Kim
-Quý,Dậu,1993,13,Kiếm Phong Kim,Kim
-Giáp,Tuất,1994,14,Sơn Đầu Hỏa,Hỏa
-Ất,Hợi,1995,15,Sơn Đầu Hỏa,Hỏa
-Bính,Tý,1996,16,Giang Hạ Thủy,Thủy
-Đinh,Sửu,1997,17,Giang Hạ Thủy,Thủy
-Mậu,Dần,1998,18,Thành Đầu Thổ,Thổ
-Kỳ,Mão,1999,19,Thành Đầu Thổ,Thổ
-Canh,Thìn,2000,20,Bạch Lạp Kim,Kim
-Tân,Tỵ,2001,21,Bạch Lạp Kim,Kim
-Nhâm,Ngọ,2002,22,Dương Liễu Mộc,Mộc
-Quý,Mùi,2003,23,Dương Liễu Mộc,Mộc
-Giáp,Thân,2004,24,Tuyền Trung Thủy,Thủy
-Ất,Dậu,2005,25,Tuyền Trung Thủy,Thủy
-Bính,Tuất,2006,26,Ốc Thượng Thổ,Thổ
-Đinh,Hợi,2007,27,Ốc Thượng Thổ,Thổ
-Mậu,Tý,2008,28,Thích Lịch Hỏa,Hỏa
-Kỳ,Sửu,2009,29,Thích Lịch Hỏa,Hỏa
-Canh,Dần,2010,30,Tòng Bá Mộc,Mộc
-Tân,Mão,2011,31,Tòng Bá Mộc,Mộc
-Nhâm,Thìn,2012,32,Trường Lưu Thủy,Thủy
-Quý,Tỵ,2013,33,Trường Lưu Thủy,Thủy
-Giáp,Ngọ,2014,34,Sa Trung Kim,Kim
-Ất,Mùi,2015,35,Sa Trung Kim,Kim
-Bính,Thân,2016,36,Sơn Hạ Hỏa,Hỏa
-Đinh,Dậu,2017,37,Sơn Hạ Hỏa,Hỏa
-Mậu,Tuất,2018,38,Bình Địa Mộc,Mộc
-Kỳ,Hợi,2019,39,Bình Địa Mộc,Mộc
-Canh,Tý,2020,40,Bích Thượng Thổ,Thổ
-Tân,Sửu,2021,41,Bích Thượng Thổ,Thổ
-Nhâm,Dần,2022,42,Kim Bạc Kim,Kim
-Quý,Mão,2023,43,Kim Bạc Kim,Kim
-Giáp,Thìn,2024,44,Phúc Đăng Hỏa,Hỏa
-Ất,Tỵ,2025,45,Phúc Đăng Hỏa,Hỏa
-Bính,Ngọ,2026,46,Thiên Hà Thủy,Thủy
-Đinh,Mùi,2027,47,Thiên Hà Thủy,Thủy
-Mậu,Thân,2028,48,Đại Thạch Thổ,Thổ
-Kỳ,Dậu,2029,49,Đại Thạch Thổ,Thổ
-Canh,Tuất,2030,50,Thoa Xuyến Kim,Kim
-Tân,Hợi,2031,51,Thoa Xuyến Kim,Kim
-Nhâm,Tý,2032,52,Tang Đổ Mộc,Mộc
-Quý,Sửu,2033,53,Tang Đổ Mộc,Mộc
-Giáp,Dần,2034,54,Đại Khê Thủy,Thủy
-Ất,Mão,2035,55,Đại Khê Thủy,Thủy
-Bính,Thìn,2036,56,Sa Trung Thổ,Thổ
-Đinh,Tỵ,2037,57,Sa Trung Thổ,Thổ
-Mậu,Ngọ,2038,58,Thiên Thượng Hỏa,Hỏa
-Kỳ,Mùi,2039,59,Thiên Thượng Hỏa,Hỏa
+Can,Chi,Năm,ID
+Canh,Thân,1980,0
+Tân,Dậu,1981,1
+Nhâm,Tuất,1982,2
+Quý,Hợi,1983,3
+Giáp,Tý,1984,4
+Ất,Sửu,1985,5
+Bính,Dần,1986,6
+Đinh,Mão,1987,7
+Mậu,Thìn,1988,8
+Kỷ,Tỵ,1989,9
+Canh,Ngọ,1990,10
+Tân,Mùi,1991,11
+Nhâm,Thân,1992,12
+Quý,Dậu,1993,13
+Giáp,Tuất,1994,14
+Ất,Hợi,1995,15
+Bính,Tý,1996,16
+Đinh,Sửu,1997,17
+Mậu,Dần,1998,18
+Kỷ,Mão,1999,19
+Canh,Thìn,2000,20
+Tân,Tỵ,2001,21
+Nhâm,Ngọ,2002,22
+Quý,Mùi,2003,23
+Giáp,Thân,2004,24
+Ất,Dậu,2005,25
+Bính,Tuất,2006,26
+Đinh,Hợi,2007,27
+Mậu,Tý,2008,28
+Kỷ,Sửu,2009,29
+Canh,Dần,2010,30
+Tân,Mão,2011,31
+Nhâm,Thìn,2012,32
+Quý,Tỵ,2013,33
+Giáp,Ngọ,2014,34
+Ất,Mùi,2015,35
+Bính,Thân,2016,36
+Đinh,Dậu,2017,37
+Mậu,Tuất,2018,38
+Kỷ,Hợi,2019,39
+Canh,Tý,2020,40
+Tân,Sửu,2021,41
+Nhâm,Dần,2022,42
+Quý,Mão,2023,43
+Giáp,Thìn,2024,44
+Ất,Tỵ,2025,45
+Bính,Ngọ,2026,46
+Đinh,Mùi,2027,47
+Mậu,Thân,2028,48
+Kỷ,Dậu,2029,49
+Canh,Tuất,2030,50
+Tân,Hợi,2031,51
+Nhâm,Tý,2032,52
+Quý,Sửu,2033,53
+Giáp,Dần,2034,54
+Ất,Mão,2035,55
+Bính,Thìn,2036,56
+Đinh,Tỵ,2037,57
+Mậu,Ngọ,2038,58
+Kỷ,Mùi,2039,59
