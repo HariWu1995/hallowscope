@@ -279,11 +279,29 @@ def locate_aux_stars(thable: pd.DataFrame,
 
     thable = thable.merge(eternity_circle, on=['Chi'], how='left')
 
-    # 11. An Sao:
-    #       Ân Quang, Thiên Quý, Tam Thai, Bát Tọa, Đẩu Quân, Thiên Tài, Thiên Thọ,
+    # 11. An Sao theo Cung:
     #       Thiên Thương, Thiên Sứ, Thiên La, Địa Võng
+    
+    e = thable[thable['Cung'] == 'Nô bộc']['Chi'].values[0]
+    s = add_status_to_star('Thiên Thương', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
-    # 12. An Sao lưu niên
+    e = thable[thable['Cung'] == 'Tật ách']['Chi'].values[0]
+    s = add_status_to_star('Thiên Sứ', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+
+    e = 'Thìn'
+    s = add_status_to_star('Thiên La', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e = 'Tuất'
+    s = add_status_to_star('Địa Võng', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+
+    # 12. An Sao:
+    #       Ân Quang, Thiên Quý, Tam Thai, Bát Tọa, Đẩu Quân, Thiên Tài, Thiên Thọ
+
+    # 13. An Sao lưu niên
 
     return thable
 
