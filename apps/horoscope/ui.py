@@ -37,6 +37,32 @@ def read_the_destiny(dd: int, dh: str, de: str,
     # Heavenly Table - Thable
     thable = locate_all_stars_and_states(destiny, destiny_pos, situation,
                                          dd, mm, he, yh, ye, gender=gd)
+    thable = thable.drop(columns=['id','row','col'])
+    thable = thable.sort_values(by=['Chi'], 
+                                key=lambda x: x.map({p: pi 
+                                                    for pi, p in enumerate(Earthly_Branches)}))
+    thable['Đại hạn'] = ['Đại hạn'] * 12
+    thable['Tiểu hạn'] = ['Tiểu hạn'] * 12
+
+    # Flatten Palaces data:
+    #       12 x (
+    #               Chi, Cung, Chính tinh, Phụ tinh, 
+    #               Vòng Thái tuế, Vòng Lộc tồn, Vòng Trường sinh, 
+    #               Đại hạn, Tiểu hạn
+    #            )
+    def clean_stars_list(stars: str, ascending: bool = None) -> list:
+        stars = stars.split(' - ')
+        stars = [s for s in stars if s != '']
+        if ascending is None:
+            return stars
+        stars = sorted(stars)
+        return stars if ascending else stars[::-1]
+
+    palaces_data = []
+    for _, (e, p, main, aux, xtr, ftn, etn, K, k) in thable.iterrows():
+        main = clean_stars_list(main)
+        aux = clean_stars_list(aux)
+        palaces_data.extend([e, p, main, aux, xtr, ftn, etn, K, k])
 
     return (
         # Center of Table
@@ -48,8 +74,9 @@ def read_the_destiny(dd: int, dh: str, de: str,
         destiny_pos, favoreverse,
 
         # Heavenly Table - Thable
-        ["Tử Vi [Đ]","Thiên Tướng [H]","Tham Lang"]
+        *palaces_data
     )
+
 
 # Define UI settings & layout
 min_width = 25
@@ -72,7 +99,7 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
         with gr.Column(scale=3, min_width=min_width):
             gr_MM = gr.Number(label="Tháng", value=1, minimum=1, maximum=12, interactive=True)
         with gr.Column(scale=3, min_width=min_width):
-            gr_Y4 = gr.Number(label="Năm", value=2000, minimum=1888, maximum=2111, interactive=True)
+            gr_Y4 = gr.Number(label="Năm", value=2000, minimum=765, maximum=2200, interactive=True)
         with gr.Column(scale=1, min_width=min_width):
             gr.Markdown("")
         with gr.Column(scale=3, min_width=min_width):
@@ -550,7 +577,7 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
     with gr.Row():
         with gr.Column(scale=1, min_width=min_width):
-            read_button = gr.Button(value="🔎 Explain", variant="primary")
+            explain_button = gr.Button(value="🔎 Explain", variant="primary")
         with gr.Column(scale=6, min_width=min_width):
             gr.Markdown("")
     
@@ -575,6 +602,7 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                                                outputs = lunisol_dt_data)
     read_button.click(fn = read_the_destiny, inputs = lunisol_dt_data + [gr_hh, gr_mm, gender],
                                             outputs = destiny_data + palaces_data)
+    # explain_button.click()
 
 
 if __name__ == "__main__":

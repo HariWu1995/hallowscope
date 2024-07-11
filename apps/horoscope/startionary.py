@@ -98,7 +98,7 @@ def locate_all_stars_and_states(
     thable = thable.set_index('Chi')
     thable = locate_aux_stars(thable, hour=he, month=mm, yr_e=ye, yr_h=yh, 
                                     gender=gender, situation=situation)
-    print(thable.drop(columns=['id','row','col']))
+    # print(thable.drop(columns=['id','row','col']))
     return thable
 
 
@@ -241,7 +241,7 @@ def locate_aux_stars(thable: pd.DataFrame,
         temp = earthlings + earthlings
         earthlings = temp[start_idx:start_idx+12]
 
-    col = 'Vòng Bác Sỹ'
+    col = 'Vòng Lộc Tồn'
     fortunity_circle = pd.DataFrame({col : fortunities, 
                                     'Chi': earthlings, })
     fortunity_circle[col] = fortunity_circle.apply(lambda x: add_status_to_star(*x.values), axis=1)
