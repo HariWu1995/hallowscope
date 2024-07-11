@@ -1,9 +1,9 @@
 import pytz
 import datetime
 import math
-from lunarcalendar import Converter, Solar, Lunar, DateNotExist
-
 import pandas as pd
+
+from ..lunar_calendar import Converter, Solar, Lunar, DateNotExist
 
 
 def convert_date_from_universal_to_julian(
@@ -38,9 +38,9 @@ def convert_date_from_lunisolar_to_universal(
 
 if __name__ == "__main__":
 
-    # Error for year < 1700
+    # Error for year < 762
     u_day = dict(
-        year = 1700, month = 5, day = 19,  
+        year = 1995, month = 5, day = 19,  
         hour = 10, minute = 3, second = 16, tz = "Asia/Ho_Chi_Minh"
     )
 
