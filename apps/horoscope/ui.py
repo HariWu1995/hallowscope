@@ -50,7 +50,7 @@ def read_the_destiny(dd: int, dh: str, de: str,
     willing_star = WeAcKn['THÂN CHỦ'].at[ye, 'Thân Chủ']
 
     # Heavenly Table - Thable
-    thable = locate_all_stars_and_states(destiny, destiny_pos, situation,
+    thable = locate_all_stars_and_states(destiny, destiny_pos, situation, willing_star,
                                          dd, mm, he, yh, ye, gender=gd)
     thable = thable.drop(columns=['id','row','col'])
     thable = thable.sort_values(by=['Chi'], 

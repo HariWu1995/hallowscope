@@ -17,8 +17,10 @@ wak_dir = wk_dir / "WeAcKn"
 
 WeAcKn = {
         fn.upper(): pd.read_csv(wak_dir / f"{fn}.csv")
-    for fn in ['Overview','Interpretation','Destiny','Đắc Tinh']
+    for fn in ['Overview','Interpretation','Destiny','Đắc Tinh','Cung Thân']
 }
+
+WeAcKn['CUNG THÂN'] = WeAcKn['CUNG THÂN'].rename(columns={'Tháng \ Giờ': 'Tháng'})
 
 WeAcKn['OVERVIEW']        = WeAcKn['OVERVIEW'].dropna(subset=['Tên'], axis=0)
 WeAcKn['OVERVIEW']['Tên'] = WeAcKn['OVERVIEW']['Tên'].apply(lambda x: x.title())
@@ -68,7 +70,7 @@ def get_available_stars_and_states():
 
 
 def locate_all_stars_and_states(
-   destiny: str, destiny_pos: str, situation: str, 
+   destiny: str, destiny_pos: str, situation: str, willing_star: str,
         dd: int, 
         mm: int, 
         he: str,
@@ -96,8 +98,8 @@ def locate_all_stars_and_states(
 
     # An Sao: Phụ tinh
     thable = thable.set_index('Chi')
-    thable = locate_aux_stars(thable, hour=he, month=mm, yr_e=ye, yr_h=yh, 
-                                    gender=gender, situation=situation)
+    thable = locate_aux_stars(thable, hr_e=he, day=dd, month=mm, yr_e=ye, yr_h=yh, 
+                              gender=gender, situation=situation, willing_star=willing_star)
     # print(thable.drop(columns=['id','row','col']))
     return thable
 
@@ -125,24 +127,25 @@ def locate_main_stars(thable: pd.DataFrame,
 
 
 def locate_aux_stars(thable: pd.DataFrame, 
-                     hour: str, month: int, 
+                     hr_e: str, day: int, month: int, 
                      yr_e: str, yr_h: str, 
                    gender: str, 
-                situation: str, **kwargs) -> pd.DataFrame:
+                situation: str, 
+             willing_star: str, **kwargs) -> pd.DataFrame:
 
     thable['Phụ tinh'] = '' * len(thable)
 
     # 1. An Sao theo Giờ sinh:
     #       Văn Xương, Văn Khúc, Thai Phụ, Phong Cáo, Địa Không, Địa Kiếp
-    stars = WeAcKn['AN PHỤ TINH - GIỜ'][['Sao', hour]].rename(columns={hour: 'Chi'})
+    stars = WeAcKn['AN PHỤ TINH - GIỜ'][['Sao', hr_e]].rename(columns={hr_e: 'Chi'})
     for _, (s, e) in stars.iterrows():
         s = add_status_to_star(s, e)
         thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
     # 2. An Sao theo Tháng sinh: 
     #       Hữu Bật, Tả Phù, Thiên Giải, Thiên Y, Thiên Riêu, Thiên Hình
-    month = str(month)
-    stars = WeAcKn['AN PHỤ TINH - THÁNG'][['Sao', month]].rename(columns={month: 'Chi'})
+    m = str(month)
+    stars = WeAcKn['AN PHỤ TINH - THÁNG'][['Sao', m]].rename(columns={m: 'Chi'})
     for _, (s, e) in stars.iterrows():
         s = add_status_to_star(s, e)
         thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
@@ -199,7 +202,7 @@ def locate_aux_stars(thable: pd.DataFrame,
     df = WeAcKn['AN SAO HỎA TINH'].copy(deep=True)
     df = df[(df['Năm sinh'] == yr_e) & \
             (df['Dương Nam - Âm Nữ'] == (gender in ['Dương Nam','Âm Nữ']))]
-    e = df[hour].values[0]
+    e = df[hr_e].values[0]
     s = add_status_to_star('Hỏa Tinh', e)
     thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
@@ -207,7 +210,7 @@ def locate_aux_stars(thable: pd.DataFrame,
     df = WeAcKn['AN SAO LINH TINH'].copy(deep=True)
     df = df[(df['Năm sinh'] == yr_e) & \
             (df['Dương Nam - Âm Nữ'] == (gender in ['Dương Nam','Âm Nữ']))]
-    e = df[hour].values[0]
+    e = df[hr_e].values[0]
     s = add_status_to_star('Linh Tinh', e)
     thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
@@ -302,7 +305,51 @@ def locate_aux_stars(thable: pd.DataFrame,
     thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
     # 12. An Sao:
-    #       Ân Quang, Thiên Quý, Tam Thai, Bát Tọa, Đẩu Quân, Thiên Tài, Thiên Thọ
+    #       Ân Quang, Thiên Quý, Tam Thai, Bát Tọa [x], Đẩu Quân [x], Thiên Tài, Thiên Thọ
+    earthlings = HeavenTable['Chi'].values.tolist()
+    
+    e_ms = thable[thable['Phụ tinh'].str.contains('Văn Xương', case=True, na=False)]['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) + day - 2)
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Ân Quang', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e_ms = thable[thable['Phụ tinh'].str.contains('Văn Khúc', case=True, na=False)]['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) - day + 2)
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Thiên Quý', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e_ms = thable[thable['Phụ tinh'].str.contains('Tả Phù', case=True, na=False)]['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) + day - 1)
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Tam Thai', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+
+    e_ms = thable[thable['Phụ tinh'].str.contains('Hữu Bật', case=True, na=False)]['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) - day + 1)
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Bát Tọa', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e_ms = thable[thable['Cung'] == 'Mệnh']['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) + earthlings.index(yr_e))
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Thiên Tài', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e_ms = WeAcKn['CUNG THÂN'].set_index('Tháng').at[month, hr_e]
+    e_idx = (earthlings.index(e_ms) + earthlings.index(yr_e))
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Thiên Thọ', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
+    
+    e_ms = thable[thable['Vòng Thái Tuế'] == 'Thái Tuế']['Chi'].values[0]
+    e_idx = (earthlings.index(e_ms) - month + 1)
+    e_idx = (e_idx + earthlings.index(hr_e))
+    e = earthlings[e_idx % 12]
+    s = add_status_to_star('Đẩu Quân', e)
+    thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
 
     # 13. An Sao lưu niên
 
@@ -320,44 +367,48 @@ def add_status_to_star(star: str, earthling: str):
 
 if __name__ == "__main__":
 
-    # destiny = "Sơn đầu hỏa"
-    # destiny_pos = "Thìn"
-    # situation = "Kim tứ cục"
-    # hour = 'Sửu'
-    # day = 20
-    # month = 4
-    # year = 1995
-    # yh, ye = 'Ất Hợi'.split(' ')
-    # gender = 'Âm Nam'
-
-    # destiny = "Ốc thượng thổ"
-    # destiny_pos = "Dần"
-    # situation = "Mộc tam cục"
-    # hour = 'Thìn'
-    # day = 15
-    # month = 5
-    # year = 1946
-    # yh, ye = 'Bính Tuất'.split(' ')
-    # gender = 'Dương Nam'
-
-    destiny = "Thành đầu thổ"
-    destiny_pos = "Tý"
-    situation = "Thủy nhị cục"
-    hour = 'Tý'
-    day = 25
-    month = 11
-    year = 2000
-    yh, ye = 'Kỷ Mão'.split(' ')
+    destiny = "Sơn đầu hỏa"
+    destiny_pos = "Thìn"
+    situation = "Kim tứ cục"
+    willing_star = "Thiên Cơ"
+    he = 'Sửu'
+    day = 20
+    month = 4
+    year = 1995
+    yh, ye = 'Ất Hợi'.split(' ')
     gender = 'Âm Nam'
 
+    destiny = "Ốc thượng thổ"
+    destiny_pos = "Dần"
+    situation = "Mộc tam cục"
+    # willing_star = ""
+    he = 'Thìn'
+    day = 15
+    month = 5
+    year = 1946
+    yh, ye = 'Bính Tuất'.split(' ')
+    gender = 'Dương Nam'
+
+    # destiny = "Thành đầu thổ"
+    # destiny_pos = "Tý"
+    # situation = "Thủy nhị cục"
+    # willing_star = ""
+    # he = 'Tý'
+    # day = 25
+    # month = 11
+    # year = 2000
+    # yh, ye = 'Kỷ Mão'.split(' ')
+    # gender = 'Âm Nam'
+
     thable = locate_all_stars_and_states(
-        destiny, destiny_pos, situation,
+        destiny, destiny_pos, situation, willing_star,
         day, month, 
-        hour, 
+        he, 
         yh, ye,
         gender
     )
-    print(thable)
+    print(thable.drop(columns=['id','row','col',
+                               'Vòng Thái Tuế','Vòng Lộc Tồn','Vòng Trường Sinh']))
 
     thable.to_csv('draft/thable.csv', index=False)
 
