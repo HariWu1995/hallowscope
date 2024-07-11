@@ -14,8 +14,8 @@ Science is tied to "the plane of effects", but occultism is take to "the plane o
 2. ✅ Xác định tuổi Âm hay Dương và Bản Mệnh 
 3. ✅ Xác định vị trí các cung trên lá số
 4. ✅ Xác định cục theo tuổi  
-5. ⬜ An sao Tử Vi và 13 chính tinh khác
-6. ⬜ An các Phụ tinh
+5. ✅ An sao Tử Vi và 13 chính tinh khác
+6. ✅ An các Phụ tinh (90%)
 7. ⬜ Tính Đại hạn, Tiểu hạn, Nguyệt hạn, Thời hạn  
 
 

@@ -173,6 +173,8 @@ def locate_aux_stars(thable: pd.DataFrame,
     for _, (s, m) in stcrs.iterrows():
         m = m[1:]
         df = thable[thable['Chính tinh'].str.contains(m, case=True, na=False)]
+        if len(df) == 0:
+            continue
         e = df.index.values[0]
         s = add_status_to_star(s, e)
         thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
@@ -281,7 +283,8 @@ def locate_aux_stars(thable: pd.DataFrame,
 
     # 11. An Sao theo Cung:
     #       Thiên Thương, Thiên Sứ, Thiên La, Địa Võng
-    
+    thable.index = thable['Chi'].values
+
     e = thable[thable['Cung'] == 'Nô bộc']['Chi'].values[0]
     s = add_status_to_star('Thiên Thương', e)
     thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
@@ -317,27 +320,35 @@ def add_status_to_star(star: str, earthling: str):
 
 if __name__ == "__main__":
 
-    destiny = "Sơn đầu hỏa"
-    destiny_pos = "Thìn"
-    situation = "Kim tứ cục"
-
-    hour = 'Sửu'
-    day = 20
-    month = 4
-    year = 1995
-    yh, ye = 'Ất Hợi'.split(' ')
-    gender = 'Âm Nam'
+    # destiny = "Sơn đầu hỏa"
+    # destiny_pos = "Thìn"
+    # situation = "Kim tứ cục"
+    # hour = 'Sửu'
+    # day = 20
+    # month = 4
+    # year = 1995
+    # yh, ye = 'Ất Hợi'.split(' ')
+    # gender = 'Âm Nam'
 
     # destiny = "Ốc thượng thổ"
     # destiny_pos = "Dần"
     # situation = "Mộc tam cục"
-
     # hour = 'Thìn'
     # day = 15
     # month = 5
     # year = 1946
     # yh, ye = 'Bính Tuất'.split(' ')
     # gender = 'Dương Nam'
+
+    destiny = "Thành đầu thổ"
+    destiny_pos = "Tý"
+    situation = "Thủy nhị cục"
+    hour = 'Tý'
+    day = 25
+    month = 11
+    year = 2000
+    yh, ye = 'Kỷ Mão'.split(' ')
+    gender = 'Âm Nam'
 
     thable = locate_all_stars_and_states(
         destiny, destiny_pos, situation,
@@ -346,6 +357,7 @@ if __name__ == "__main__":
         yh, ye,
         gender
     )
+    print(thable)
 
     thable.to_csv('draft/thable.csv', index=False)
 

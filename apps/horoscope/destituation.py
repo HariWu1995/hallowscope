@@ -80,9 +80,14 @@ def determine_destiny_and_situation(yh: str, ye: str, yy: str,
 
 if __name__ == "__main__":
 
+    year = 'Kỷ Mão'
+    yh, ye = year.split(' ')
+    mm = 11
+    he = 'Tý'
+
     destiny, dst_position, situation, \
     correlation, \
-    favoreverse = determine_destiny_and_situation(yh='Bính', ye='Tuất', yy='Dương', mm=5, he='Thìn')
+    favoreverse = determine_destiny_and_situation(yh=yh, ye=ye, yy='Âm', mm=mm, he=he)
 
     print("Mệnh:", destiny, 'tại', dst_position)
     print("Cục:", situation)

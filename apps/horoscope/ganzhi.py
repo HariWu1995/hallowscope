@@ -10,6 +10,8 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from .time_libs import convert_date_from_universal_to_lunisolar
+
 
 wk_dir = Path(__file__).parents[0]
 wak_dir = wk_dir / "WeAcKn"
@@ -91,8 +93,6 @@ def find_ganzhi_of_hour(hour: float, heaven_of_day: str,
 def find_ganzhi_of_time(day: int, month: int, year: int, 
                         hour: int, minute: int = 0, second: int = 0):
 
-    from .time_libs import convert_date_from_universal_to_lunisolar
-
     ls_day, ls_month, \
     ls_year, is_leap = convert_date_from_universal_to_lunisolar(day, month, year)
 
@@ -115,11 +115,7 @@ def find_ganzhi_of_time(day: int, month: int, year: int,
 
 if __name__ == "__main__":
 
-    from time_libs import (
-        convert_date_from_universal_to_lunisolar,
-    )
-
-    u_day, u_month, u_year = 19, 5, 1995
+    u_day, u_month, u_year = 1, 1, 2000
     ls_day, ls_month, ls_year, is_leap = convert_date_from_universal_to_lunisolar(u_day, u_month, u_year)
 
     can, chi = find_ganzhi_of_lunar_year(ls_year)
@@ -131,7 +127,7 @@ if __name__ == "__main__":
     can, chi = find_ganzhi_of_day(u_day, u_month, u_year)
     print("Ngày:", ls_day, can, chi)
 
-    hour, minute, second = 1, 2, 3
+    hour, minute, second = 0, 0, 0
     can, chi = find_ganzhi_of_hour(hour, can, minute, second)
     print(f"Giờ: {hour:02d}:{minute:02d}:{second:02d}", can, chi)
 

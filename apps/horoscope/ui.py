@@ -21,6 +21,7 @@ Stars_States = get_available_stars_and_states()
 from .ganzhi import find_ganzhi_of_time
 from .destituation import determine_destiny_and_situation
 from .startionary import locate_all_stars_and_states
+from .calamity import find_calamity_of_decade, find_calamity_of_year
 
 def read_the_destiny(dd: int, dh: str, de: str,
                      mm: int, mh: str, me: str,
@@ -41,8 +42,19 @@ def read_the_destiny(dd: int, dh: str, de: str,
     thable = thable.sort_values(by=['Chi'], 
                                 key=lambda x: x.map({p: pi 
                                                     for pi, p in enumerate(Earthly_Branches)}))
-    thable['Đại hạn'] = ['Đại hạn'] * 12
-    thable['Tiểu hạn'] = ['Tiểu hạn'] * 12
+    # print(thable)
+
+    calamity_y10 = find_calamity_of_decade(situation, gender=gd)
+    calamity_y1 = find_calamity_of_year(ye=ye, gender=gd)
+
+    # print(calamity_y10)
+    # print(calamity_y1)
+
+    thable = thable.merge(calamity_y10, how='left', on='Cung')\
+                    .merge(calamity_y1, how='left', on='Chi')
+
+    # thable['Đại hạn'] = ['Đại hạn'] * 12
+    # thable['Tiểu hạn'] = ['Tiểu hạn'] * 12
 
     # Flatten Palaces data:
     #       12 x (
@@ -145,7 +157,7 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
             gr.Markdown("")
 
     variant = 'compact'  # 'panel'
-    style = dict(show_label=False, container=False, interactive=False)
+    style = dict(max_lines=1, show_label=False, container=False, interactive=False)
     ststtyle = dict(choices=Stars_States, multiselect=True, interactive=False, min_width=min_width)
     
     gr.Markdown("")
@@ -157,9 +169,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b11_ord = gr.Textbox(placeholder="Tỵ", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b11_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -179,9 +193,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b11_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b11_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b11_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b11_data = [b11_ord, b11_plc, 
                         b11_main, b11_aux, b11_xtr, b11_ftn, b11_etn, 
@@ -189,9 +205,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b12_ord = gr.Textbox(placeholder="Ngọ", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b12_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -211,9 +229,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b12_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b12_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b12_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b12_data = [b12_ord, b12_plc, 
                         b12_main, b12_aux, b12_xtr, b12_ftn, b12_etn, 
@@ -221,9 +241,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b13_ord = gr.Textbox(placeholder="Mùi", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b13_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -243,9 +265,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b13_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b13_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b13_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b13_data = [b13_ord, b13_plc, 
                         b13_main, b13_aux, b13_xtr, b13_ftn, b13_etn, 
@@ -253,9 +277,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b14_ord = gr.Textbox(placeholder="Thân", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b14_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -275,9 +301,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b14_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b14_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b14_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b14_data = [b14_ord, b14_plc, 
                         b14_main, b14_aux, b14_xtr, b14_ftn, b14_etn, 
@@ -287,9 +315,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b21_ord = gr.Textbox(placeholder="Thìn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b21_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -309,9 +339,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b21_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b21_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b21_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b21_data = [b21_ord, b21_plc, 
                         b21_main, b21_aux, b21_xtr, b21_ftn, b21_etn, 
@@ -333,9 +365,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b24_ord = gr.Textbox(placeholder="Dậu", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b24_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -355,9 +389,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b24_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b24_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b24_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b24_data = [b24_ord, b24_plc, 
                         b24_main, b24_aux, b24_xtr, b24_ftn, b24_etn, 
@@ -367,9 +403,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b31_ord = gr.Textbox(placeholder="Mão", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b31_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -389,9 +427,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b31_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b31_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b31_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b31_data = [b31_ord, b31_plc, 
                         b31_main, b31_aux, b31_xtr, b31_ftn, b31_etn, 
@@ -415,9 +455,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b34_ord = gr.Textbox(placeholder="Tuất", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b34_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -437,9 +479,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b34_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b34_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b34_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b34_data = [b34_ord, b34_plc, 
                         b34_main, b34_aux, b34_xtr, b34_ftn, b34_etn, 
@@ -449,9 +493,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b41_ord = gr.Textbox(placeholder="Dần", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b41_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -471,9 +517,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b41_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b41_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b41_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b41_data = [b41_ord, b41_plc, 
                         b41_main, b41_aux, b41_xtr, b41_ftn, b41_etn, 
@@ -481,9 +529,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b42_ord = gr.Textbox(placeholder="Sửu", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b42_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -503,9 +553,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b42_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b42_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b42_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b42_data = [b42_ord, b42_plc, 
                         b42_main, b42_aux, b42_xtr, b42_ftn, b42_etn, 
@@ -513,9 +565,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b43_ord = gr.Textbox(placeholder="Tý", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b43_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -535,9 +589,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b43_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b43_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b43_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b43_data = [b43_ord, b43_plc, 
                         b43_main, b43_aux, b43_xtr, b43_ftn, b43_etn, 
@@ -545,9 +601,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b44_ord = gr.Textbox(placeholder="Hợi", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=7, min_width=min_width):
                         b44_plc = gr.Textbox(placeholder="Cung", text_align='right', **style)
                 with gr.Row():
                     with gr.Column(scale=1, min_width=min_width):
@@ -567,9 +625,11 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                     with gr.Column(scale=1, min_width=min_width):
                         b44_etn = gr.Textbox(placeholder="Tràng Sinh", text_align='right', **style)
                 with gr.Row():
-                    with gr.Column(scale=2, min_width=min_width):
+                    with gr.Column(scale=5, min_width=min_width):
                         b44_karMa = gr.Textbox(placeholder="Đại hạn", text_align='left', **style)
-                    with gr.Column(scale=3, min_width=min_width):
+                    with gr.Column(scale=1, min_width=min_width):
+                        gr.Markdown("")
+                    with gr.Column(scale=5, min_width=min_width):
                         b44_karma = gr.Textbox(placeholder="Tiểu Hạn", text_align='right', **style)
             b44_data = [b44_ord, b44_plc, 
                         b44_main, b44_aux, b44_xtr, b44_ftn, b44_etn, 
