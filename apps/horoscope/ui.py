@@ -1,7 +1,8 @@
 import os
-import datetime
+from pathlib import Path
 
 import numpy as np
+import pandas as pd
 
 import gradio as gr
 from gradio_calendar import Calendar
@@ -16,6 +17,16 @@ Earthly_Branches = WeAcKn_GanZhi['CHI']['Value'].values.tolist()
 
 Stars_States = get_available_stars_and_states()
 
+wk_dir = Path(__file__).parents[0]
+wak_dir = wk_dir / "WeAcKn"
+
+WeAcKn = {
+        fn.upper(): pd.read_csv(wak_dir / f"{fn}.csv")
+    for fn in ['Mệnh Chủ','Thân Chủ']
+}
+
+WeAcKn['MỆNH CHỦ'].set_index('Cung Mệnh', inplace=True)
+WeAcKn['THÂN CHỦ'].set_index('Năm sinh', inplace=True)
 
 # Process data
 from .ganzhi import find_ganzhi_of_time
@@ -34,6 +45,9 @@ def read_the_destiny(dd: int, dh: str, de: str,
         situation, \
         correlation, \
         favoreverse = determine_destiny_and_situation(yh=yh, ye=ye, yy=yy, mm=mm, he=he)
+
+    destiny_star = WeAcKn['MỆNH CHỦ'].at[destiny_pos, 'Mệnh Chủ']
+    willing_star = WeAcKn['THÂN CHỦ'].at[ye, 'Thân Chủ']
 
     # Heavenly Table - Thable
     thable = locate_all_stars_and_states(destiny, destiny_pos, situation,
@@ -82,8 +96,10 @@ def read_the_destiny(dd: int, dh: str, de: str,
         f"{dd} - {dh} {de}", 
         f"{uh:02d}:{um:02d} - {hh} {he}", 
         f"{yy} {gd}", 
+
         destiny, situation, correlation, 
         destiny_pos, favoreverse,
+        destiny_star, willing_star,
 
         # Heavenly Table - Thable
         *palaces_data
@@ -359,9 +375,9 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
 
             with gr.Column(min_width=min_width):
                 gr.Markdown("### Mệnh chủ:")
-                disp_dest_star = gr.Textbox(placeholder="Mệnh chủ:", **style)
+                disp_destiny_star = gr.Textbox(placeholder="Mệnh chủ:", **style)
                 gr.Markdown("### Thân chủ:")
-                disp_body_star = gr.Textbox(placeholder="Thân chủ:", **style)
+                disp_willing_star = gr.Textbox(placeholder="Thân chủ:", **style)
 
             with gr.Column(variant=variant, min_width=min_width):
                 with gr.Row():
@@ -652,7 +668,9 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                               ls_Hh, ls_He, ]
     destiny_data = [disp_M, disp_D, disp_h, disp_yygd,
                     disp_dest, disp_sitt, disp_corr, 
-                    disp_dstp, disp_fvrv]
+                    disp_dstp, disp_fvrv,
+                    disp_destiny_star, disp_willing_star]
+
     # Order Palaces by Earthlings (Ty)
     palaces_data = b43_data + b42_data + b41_data + b31_data + b21_data + b11_data + \
                    b12_data + b13_data + b14_data + b24_data + b34_data + b44_data

@@ -25,6 +25,7 @@ Science is tied to "the plane of effects", but occultism is take to "the plane o
 * [Hướng dẫn chi tiết các bước lập Lá số Tử vi](https://lichngaytot.com/tu-vi/cac-buoc-lap-la-so-tu-vi-304-217457.html)
 * [Mệnh theo Năm ](https://lichngaytot.com/tu-vi/xem-menh-theo-nam-sinh-304-187792.html)
 * [Mệnh và Cục: Sinh và Khắc](https://hocvienlyso.org/chuong-8-sinh-khac-giua-cuc-va-ban-menh.html)
+* [Mệnh chủ và Thân chủ](https://hocvienlyso.org/ban-ve-menh-chu-than-chu-trong-tu-vi-dau-so.html)
 * [Tổng quan và Phân loại Tính chất các Sao trong Tử vi](https://thansohoconline.com/cac-sao-trong-tu-vi.html)
 * [Lập Lá Số Tử Vi: An Sao Và Xem Tử Vi](https://kabala.vn/la-so-tu-vi/)
 * [Thư Viện Lá Số Tử Vi Người Nổi Tiếng](https://lasotuvi.kabala.vn/thuvien/) (8000+ người)
