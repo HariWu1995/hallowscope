@@ -152,7 +152,7 @@ def describe_destiny(*data_x12):
         ref_df_2 = WeAcKn['INTERPRETATION'][
                    WeAcKn['INTERPRETATION']['Chỉ mục'] == palace
                           ].rename(columns={'Chỉ mục': 'Cung'})
-    plc_df = plc_df.merge(ref_df_2, how='left', on=['Tên sao','Cung'])
+        plc_df = plc_df.merge(ref_df_2, how='left', on=['Tên sao','Cung'])
 
     plc_df = plc_df.replace({
         'Trạng thái': {'H': 'Hãm địa', 'B': 'Bình hòa', 'Đ': 'Đắc địa', 'M': 'Miếu địa', 'V': 'Vượng địa'},
