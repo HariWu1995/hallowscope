@@ -18,7 +18,7 @@ Science is tied to "the plane of effects", but occultism is take to "the plane o
 5. ✅ An sao Tử Vi và 13 chính tinh khác
 6. ✅ An các Phụ tinh
 7. ⚠️ Tính Đại hạn, Tiểu hạn, Nguyệt hạn, Thời hạn  
-8. ⬜ Luận giải
+8. ✅ Luận giải
 9. ⬜ Xây dựng Chatbot
 
 
