@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import re
 import numpy as np
 import pandas as pd
 
@@ -10,7 +11,7 @@ from gradio_calendar import Calendar
 
 # Load data
 from .ganzhi import WeAcKn as WeAcKn_GanZhi
-from .startionary import get_available_stars_and_states
+from .startionary import get_available_stars_and_states, PalaceNames as Palace_Names
 
 Heavenly_Stems   = WeAcKn_GanZhi['CAN']['Value'].values.tolist()
 Earthly_Branches = WeAcKn_GanZhi['CHI']['Value'].values.tolist()
@@ -22,11 +23,19 @@ wak_dir = wk_dir / "WeAcKn"
 
 WeAcKn = {
         fn.upper(): pd.read_csv(wak_dir / f"{fn}.csv")
-    for fn in ['Mệnh Chủ','Thân Chủ']
+    for fn in ['Mệnh Chủ','Thân Chủ','Overview','Interpretation','Destiny']
 }
 
 WeAcKn['MỆNH CHỦ'].set_index('Cung Mệnh', inplace=True)
 WeAcKn['THÂN CHỦ'].set_index('Năm sinh', inplace=True)
+
+WeAcKn['DESTINY'] = WeAcKn['DESTINY'].drop(columns=['Mã số'])
+WeAcKn['INTERPRETATION'] = WeAcKn['INTERPRETATION'].rename(columns={'Tên': 'Tên sao'})
+WeAcKn['INTERPRETATION'] = pd.melt(WeAcKn['INTERPRETATION'], 
+                                      var_name='Chỉ mục', value_name='Nội dung',
+                                   id_vars=['Tên sao'], 
+                                value_vars=[col for col in WeAcKn['INTERPRETATION'].columns
+                                                 if col not in ['Mã số','Tên sao']],)
 
 # Process data
 from .ganzhi import find_ganzhi_of_time
@@ -104,6 +113,53 @@ def read_the_destiny(dd: int, dh: str, de: str,
         # Heavenly Table - Thable
         *palaces_data
     )
+
+
+def describe_destiny(*data_x12):
+
+    palace = data_x12[-1]
+    data_x12 = data_x12[:-1]
+
+    def split_star_and_status(star: str) -> (str, str):
+        status = re.findall(r'\[.*?\]', star)
+        if len(status) == 0:
+            status = None
+        else:
+            status = status[0]
+            star = star.replace(status, '')[:-1]
+            status = status[1:-1]
+        return star.capitalize(), status
+
+    plc_flat = []
+    for i in range(0, len(data_x12), 6):
+        p, Mains, Auxs, *Cirs = data_x12[i:i+6]
+        if p != palace:
+            continue
+        stars = Mains + Auxs + Cirs
+        for s in stars:
+            s, stt = split_star_and_status(s)
+            plc_flat.append([p, s, stt])
+    
+    ref_df_1 = WeAcKn['OVERVIEW'].rename(columns={'Tên': 'Tên sao'})[['Tên sao','Loại sao','Ngũ hành','Âm Dương']]
+    plc_df = pd.DataFrame(data=plc_flat, columns=['Cung','Tên sao','Trạng thái'])
+    plc_df = plc_df.merge(ref_df_1, how='left', on=['Tên sao'])
+
+    if palace == 'Mệnh':
+        ref_df_2 = WeAcKn['DESTINY'].rename(columns={'Tên': 'Tên sao'})
+        plc_df = plc_df.merge(ref_df_2, how='left', on=['Tên sao'])
+
+    else:
+        ref_df_2 = WeAcKn['INTERPRETATION'][
+                   WeAcKn['INTERPRETATION']['Chỉ mục'] == palace
+                          ].rename(columns={'Chỉ mục': 'Cung'})
+    plc_df = plc_df.merge(ref_df_2, how='left', on=['Tên sao','Cung'])
+
+    plc_df = plc_df.replace({
+        'Trạng thái': {'H': 'Hãm địa', 'B': 'Bình hòa', 'Đ': 'Đắc địa', 'M': 'Miếu địa', 'V': 'Vượng địa'},
+          'Âm Dương': {True: 'Dương', False: 'Âm'},
+    })
+
+    return plc_df
 
 
 # Define UI settings & layout
@@ -650,15 +706,21 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
             b44_data = [b44_ord, b44_plc, 
                         b44_main, b44_aux, b44_xtr, b44_ftn, b44_etn, 
                         b44_karMa, b44_karma]
-
-    with gr.Row():
-        with gr.Column(scale=1, min_width=min_width):
-            explain_button = gr.Button(value="🔎 Explain", variant="primary")
-        with gr.Column(scale=6, min_width=min_width):
-            gr.Markdown("")
     
     gr.Markdown("")
     gr.Markdown("# 𓍢ִ໋🀦  <b>Luận giải</b>")
+
+    with gr.Row():
+        with gr.Column(scale=1, min_width=min_width):
+            expl_palace = gr.Dropdown(label="Cung:", value='Mệnh', choices=Palace_Names, interactive=True)
+        with gr.Column(scale=6, min_width=min_width):
+            gr.Markdown("")
+    with gr.Row():
+        with gr.Column(scale=1, min_width=min_width):
+            expl_button = gr.Button(value="🔎 Tra cứu", variant="primary")
+        with gr.Column(scale=6, min_width=min_width):
+            gr.Markdown("")
+    expl_table = gr.Dataframe(datatype="markdown", line_breaks=True, interactive=False)
 
     # Group data
     solar_dt_data = [gr_DD, gr_MM, gr_Y4, gr_hh, gr_mm]
@@ -675,12 +737,16 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
     palaces_data = b43_data + b42_data + b41_data + b31_data + b21_data + b11_data + \
                    b12_data + b13_data + b14_data + b24_data + b34_data + b44_data
 
+    explain_data = [d for i in range(0, len(palaces_data), len(b44_data))
+                      for d in palaces_data[i+1:i+7]] + [expl_palace]
+
     # Callbacks
     u2ls_button.click(fn = find_ganzhi_of_time, inputs = solar_dt_data, 
                                                outputs = lunisol_dt_data)
     read_button.click(fn = read_the_destiny, inputs = lunisol_dt_data + [gr_hh, gr_mm, gender],
                                             outputs = destiny_data + palaces_data)
-    # explain_button.click()
+    expl_button.click(fn = describe_destiny, inputs = explain_data,
+                                            outputs = expl_table)
 
 
 if __name__ == "__main__":

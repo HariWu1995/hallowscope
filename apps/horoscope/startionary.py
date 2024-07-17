@@ -350,9 +350,7 @@ def locate_aux_stars(thable: pd.DataFrame,
     e = earthlings[e_idx % 12]
     s = add_status_to_star('Đẩu Quân', e)
     thable.loc[e, 'Phụ tinh'] = thable.loc[e, 'Phụ tinh'] + ' - ' + s
-
-    # 13. An Sao lưu niên
-
+    
     return thable
 
 
