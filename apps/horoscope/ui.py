@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from datetime import datetime
 
 import re
 import numpy as np
@@ -38,10 +39,22 @@ WeAcKn['INTERPRETATION'] = pd.melt(WeAcKn['INTERPRETATION'],
                                                  if col not in ['Mã số','Tên sao']],)
 
 # Process data
-from .ganzhi import find_ganzhi_of_time
+from .ganzhi import find_ganzhi_of_time, find_ganzhi_of_lunar_year
 from .destituation import determine_destiny_and_situation
 from .startionary import locate_all_stars_and_states
 from .calamity import find_calamity_of_decade, find_calamity_of_year
+
+
+def split_star_and_status(star: str) -> (str, str):
+    status = re.findall(r'\[.*?\]', star)
+    if len(status) == 0:
+        status = None
+    else:
+        status = status[0]
+        star = star.replace(status, '')[:-1]
+        status = status[1:-1]
+    return star.capitalize(), status
+
 
 def read_the_destiny(dd: int, dh: str, de: str,
                      mm: int, mh: str, me: str,
@@ -70,14 +83,8 @@ def read_the_destiny(dd: int, dh: str, de: str,
     calamity_y10 = find_calamity_of_decade(situation, gender=gd)
     calamity_y1 = find_calamity_of_year(ye=ye, gender=gd)
 
-    # print(calamity_y10)
-    # print(calamity_y1)
-
     thable = thable.merge(calamity_y10, how='left', on='Cung')\
                     .merge(calamity_y1, how='left', on='Chi')
-
-    # thable['Đại hạn'] = ['Đại hạn'] * 12
-    # thable['Tiểu hạn'] = ['Tiểu hạn'] * 12
 
     # Flatten Palaces data:
     #       12 x (
@@ -118,27 +125,18 @@ def read_the_destiny(dd: int, dh: str, de: str,
 def describe_destiny(*data_x12):
 
     palace = data_x12[-1]
-    data_x12 = data_x12[:-1]
-
-    def split_star_and_status(star: str) -> (str, str):
-        status = re.findall(r'\[.*?\]', star)
-        if len(status) == 0:
-            status = None
-        else:
-            status = status[0]
-            star = star.replace(status, '')[:-1]
-            status = status[1:-1]
-        return star.capitalize(), status
+    data = data_x12[:-1]
 
     plc_flat = []
-    for i in range(0, len(data_x12), 6):
-        p, Mains, Auxs, *Cirs = data_x12[i:i+6]
+    for i in range(0, len(data), 6):
+        p, Mains, Auxs, *Cirs = data[i:i+6]
         if p != palace:
             continue
         stars = Mains + Auxs + Cirs
         for s in stars:
             s, stt = split_star_and_status(s)
             plc_flat.append([p, s, stt])
+        break
     
     ref_df_1 = WeAcKn['OVERVIEW'].rename(columns={'Tên': 'Tên sao'})[['Tên sao','Loại sao','Ngũ hành','Âm Dương']]
     plc_df = pd.DataFrame(data=plc_flat, columns=['Cung','Tên sao','Trạng thái'])
@@ -160,6 +158,67 @@ def describe_destiny(*data_x12):
     })
 
     return plc_df
+
+
+def check_calamities(*data_x12):
+    b11_data = [b11_main, b11_aux, b11_xtr, b11_ftn, b11_etn, 
+                b11_karMa, b11_karma]
+
+    data = data_x12[:-2]
+
+    yc, yb = data_x12[-2:]
+    yd = yc - yb + 1
+    ye = find_ganzhi_of_lunar_year(year=yc)[1]
+
+    karma_stars = []
+    karMa_stars = []
+    for i in range(0, len(data), 9):
+
+        order, palace, Mains, Auxs, *Cirs, karMa, karma = data[i:i+9]
+        karMa = int(karMa)
+
+        if not (
+            (karMa <= yd < (karMa+10))
+         or (karma == ye)
+        ):
+            continue
+
+        stars = Mains + Auxs + Cirs
+        stars_at_calamity = []
+        for s in stars:
+            s, stt = split_star_and_status(s)
+            stars_at_calamity.append([s, stt])
+
+        if karMa <= yd < (karMa+10):
+            karMa_stars = stars_at_calamity
+            karMa_brief = f"Đại hạn tuổi {karMa}-{karMa+9} tại cung {palace} ({order})"
+        if karma == ye:
+            karma_stars = stars_at_calamity
+            karma_brief = f"Tiểu hạn tuổi {yd} tại cung {palace} ({order})"
+        
+        if  len(karma_stars) > 0 \
+        and len(karMa_stars) > 0:
+            break
+
+    # Build dataframe
+    karma_df = pd.DataFrame(data=karma_stars, columns=['Tên sao','Trạng thái'])
+    karMa_df = pd.DataFrame(data=karMa_stars, columns=['Tên sao','Trạng thái'])
+
+    # Clean
+    replacements = {
+        'Trạng thái': {'H': 'Hãm địa', 'B': 'Bình hòa', 'Đ': 'Đắc địa', 'M': 'Miếu địa', 'V': 'Vượng địa'},
+    }
+    karma_df = karma_df.replace(replacements)
+    karMa_df = karMa_df.replace(replacements)
+
+    # Add intepretation
+    ref_df = WeAcKn['INTERPRETATION'][
+             WeAcKn['INTERPRETATION']['Chỉ mục'] == 'Hạn'][['Tên sao','Nội dung']]
+    karma_df = karma_df.merge(ref_df, how='left', on=['Tên sao'])
+    karMa_df = karMa_df.merge(ref_df, how='left', on=['Tên sao'])
+
+    return karMa_brief, karMa_df, \
+           karma_brief, karma_df
 
 
 # Define UI settings & layout
@@ -721,6 +780,31 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
         with gr.Column(scale=6, min_width=min_width):
             gr.Markdown("")
     expl_table = gr.Dataframe(datatype="markdown", line_breaks=True, interactive=False)
+    
+    gr.Markdown("")
+    gr.Markdown("# 𓍢ִ໋🀦  <b>Xem hạn</b>")
+
+    Y = datetime.now().year
+    with gr.Row():
+        with gr.Column(scale=1, min_width=min_width):
+            clmt_Y4 = gr.Number(label="Năm:", value=Y, minimum=Y-100, maximum=Y+100, interactive=True)
+        with gr.Column(scale=6, min_width=min_width):
+            gr.Markdown("")
+    with gr.Row():
+        with gr.Column(scale=1, min_width=min_width):
+            clmt_button = gr.Button(value="🔎 Tra cứu", variant="primary")
+        with gr.Column(scale=6, min_width=min_width):
+            gr.Markdown("")
+
+    gr.Markdown("")
+    gr.Markdown("## <b>Đại hạn</b> (Thập kỉ)")
+    clmtYX_ovvw = gr.Textbox(placeholder="Đại hạn ??-?? tuổi tại cung ?? (??)", text_align='left', **style)
+    clmtYX_table = gr.Dataframe(datatype="markdown", line_breaks=True, interactive=False)
+
+    gr.Markdown("")
+    gr.Markdown("## <b>Tiểu hạn</b> (Năm)")
+    clmtYI_ovvw = gr.Textbox(placeholder="Tiểu hạn ?? tuổi tại cung ?? (??)", text_align='left', **style)
+    clmtYI_table = gr.Dataframe(datatype="markdown", line_breaks=True, interactive=False)
 
     # Group data
     solar_dt_data = [gr_DD, gr_MM, gr_Y4, gr_hh, gr_mm]
@@ -740,6 +824,8 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
     explain_data = [d for i in range(0, len(palaces_data), len(b44_data))
                       for d in palaces_data[i+1:i+7]] + [expl_palace]
 
+    calamity_data = palaces_data + [clmt_Y4, gr_Y4]
+
     # Callbacks
     u2ls_button.click(fn = find_ganzhi_of_time, inputs = solar_dt_data, 
                                                outputs = lunisol_dt_data)
@@ -747,6 +833,9 @@ with gr.Blocks(css=None, analytics_enabled=False) as gui:
                                             outputs = destiny_data + palaces_data)
     expl_button.click(fn = describe_destiny, inputs = explain_data,
                                             outputs = expl_table)
+    clmt_button.click(fn = check_calamities, inputs = calamity_data,
+                                            outputs = [clmtYX_ovvw, clmtYX_table, 
+                                                       clmtYI_ovvw, clmtYI_table])
 
 
 if __name__ == "__main__":

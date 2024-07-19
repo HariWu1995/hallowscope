@@ -9,7 +9,7 @@ In this repository, we will replace ~~dataset~~ with the term **WeAcKn** with th
 
 
 # Applications:
-* ![Horoscope](https://progress-bar.dev/95/?scale=100&title=Horoscope&suffix=%&width=200&color=babaca)
+* ![Horoscope](https://progress-bar.dev/99/?scale=100&title=Horoscope&suffix=%&width=200&color=babaca)
 * ![Physiognomy](https://progress-bar.dev/1/?scale=100&title=Physiognomy&suffix=%&width=200&color=babaca)
 * ![Chirology](https://progress-bar.dev/0/?scale=100&title=Chirology&suffix=%&width=200&color=babaca)
 * ![Dreamerpretation](https://progress-bar.dev/50/?scale=100&title=Dreamerpretation&suffix=%&width=200&color=babaca)
